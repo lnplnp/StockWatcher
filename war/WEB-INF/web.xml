@@ -11,34 +11,23 @@
     <welcome-file>StockWatcher.html</welcome-file>
   </welcome-file-list>
   <servlet>
-          <servlet-name>springGwtRemoteServiceServlet</servlet-name>        
-          <servlet-class>org.spring4gwt.server.SpringGwtRemoteServiceServlet</servlet-class>
-          </servlet>
-          
-          <servlet-mapping>  
-                <servlet-name>springGwtRemoteServiceServlet</servlet-name>   
-                     <url-pattern>/stockwatcher/springGwtServices/*</url-pattern>
-         </servlet-mapping>
-         
-         <servlet>
- <servlet-name>context</servlet-name>
-   <servlet-class>
-     org.springframework.web.context.ContextLoaderServlet
-	</servlet-class>
-	<load-on-startup>1</load-on-startup>
-	</servlet>
-  <!-- Servlets 
-  
-  
-  <servlet>
-    <servlet-name>stockPriceServiceImpl</servlet-name>
-    <servlet-class>com.google.gwt.sample.stockwatcher.server.StockPriceServiceImpl</servlet-class>
+    <servlet-name>springGwtRemoteServiceServlet</servlet-name>
+    <servlet-class>org.spring4gwt.server.SpringGwtRemoteServiceServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>stockPriceServiceImpl</servlet-name>
-    <url-pattern>/stockwatcher/stockPrices</url-pattern>
+    <servlet-name>springGwtRemoteServiceServlet</servlet-name>
+    <url-pattern>/stockwatcher/springGwtServices/*</url-pattern>
   </servlet-mapping>
--->
+
+  <servlet>
+    <servlet-name>context</servlet-name>
+    <servlet-class>
+      org.springframework.web.context.ContextLoaderServlet
+    </servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <!-- Servlets <servlet> <servlet-name>stockPriceServiceImpl</servlet-name> <servlet-class>com.google.gwt.sample.stockwatcher.server.StockPriceServiceImpl</servlet-class> </servlet> <servlet-mapping> 
+    <servlet-name>stockPriceServiceImpl</servlet-name> <url-pattern>/stockwatcher/stockPrices</url-pattern> </servlet-mapping> -->
 </web-app>
 
