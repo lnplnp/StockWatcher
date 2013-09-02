@@ -1,0 +1,65 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/tx
+		   http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<context:annotation-config />
+	<context:component-scan base-package="com.google.gwt.sample.stockwatcher.server.*" />
+	<aop:aspectj-autoproxy />
+
+	     <!-- Session Factory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+      <property name="dataSource"><ref local="dataSource"/></property>
+      <property name="mappingResources">
+         <list>
+            <value>com/google/gwt/sample/stockwatcher/server/persistence/StockPrice.hbm.xml</value>
+           </list>
+      </property>
+      <property name="hibernateProperties">
+         <props>
+            <prop key="hibernate.dialect">
+              org.hibernate.dialect.MySQLDialect
+            </prop>
+            <prop key="hibernate.show_sql">
+               true
+            </prop>
+            <prop key="hbm2ddl.auto">
+               create-drop
+            </prop>
+            
+         </props>
+      </property>
+   </bean>
+   
+   <!-- DataSource -->
+     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName">
+         <value>com.mysql.jdbc.Driver</value>
+      </property>
+      <property name="url">
+         <value>jdbc:mysql://localhost/SpringDB</value>
+      </property>
+     <property name="username">
+         <value>root</value>
+      </property>
+      <property name="password">
+         <value></value>
+      </property>
+   </bean>
+      <!-- switches on the transactional behavior-->
+  <tx:annotation-driven />
+
+  <!-- a PlatformTransactionManager is still required -->
+  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+  <!-- (this dependency is defined somewhere else) -->
+  <property name="dataSource" ref="dataSource"/>
+  </bean>
+</beans>
