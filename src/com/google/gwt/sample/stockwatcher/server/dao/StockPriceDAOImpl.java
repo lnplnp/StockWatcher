@@ -10,52 +10,51 @@ import com.google.gwt.sample.stockwatcher.client.StockPrice;
 
 @Repository
 public class StockPriceDAOImpl implements StockPriceDAO {
-	public StockPriceDAOImpl() {
-	}
+  public StockPriceDAOImpl() {
+  }
 
-	@Autowired
-	private HibernateTemplate hibernateTemplate;
+  @Autowired
+  private HibernateTemplate hibernateTemplate;
 
-	@Override
-	public void delete(StockPrice stock) {
+  @Override
+  public void delete(StockPrice stock) {
 
-		hibernateTemplate.delete(stock);
+    hibernateTemplate.delete(stock);
 
-	}
+  }
 
-	@Override
-	public StockPrice get(String symbol) {
-		StockPrice stock = null;
+  @Override
+  public StockPrice get(String symbol) {
+    StockPrice stock = null;
 
-		stock = (StockPrice) hibernateTemplate.get(StockPrice.class, symbol);// (employee);
+    stock = (StockPrice) hibernateTemplate.get(StockPrice.class, symbol);// (employee);
 
-		return stock;
-	}
+    return stock;
+  }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<StockPrice> getAllStocks() {
-		List<StockPrice> stocks = null;
+  @SuppressWarnings("unchecked")
+  @Override
+  public List<StockPrice> getAllStocks() {
+    List<StockPrice> stocks = null;
 
-		stocks = hibernateTemplate.getSessionFactory().openSession()
-				.createQuery("from StockPrice").list();
+    stocks = hibernateTemplate.getSessionFactory().openSession().createQuery("from StockPrice").list();
 
-		return stocks;
-	}
+    return stocks;
+  }
 
-	@Override
-	public boolean saveOrUpdate(StockPrice stock) {
-		boolean successInsert = false;
-		if (this.get(stock.getSymbol()) != null) {
-			successInsert = false;
-			return successInsert;
-		} else
-			successInsert = true;
+  @Override
+  public boolean saveOrUpdate(StockPrice stock) {
+    boolean successInsert = false;
+    if (this.get(stock.getSymbol()) != null) {
+      successInsert = false;
+      return successInsert;
+    } else
+      successInsert = true;
 
-		hibernateTemplate.save(stock);// ("from StockPrice").list();//(employee);
+    hibernateTemplate.save(stock);// ("from StockPrice").list();//(employee);
 
-		return successInsert;
+    return successInsert;
 
-	}
+  }
 
 }

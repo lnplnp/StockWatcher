@@ -9,13 +9,14 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("springGwtServices/greetingService")
 public interface StockPriceService extends RemoteService {
 
-  StockPrice[] getPrices(String[] symbols) ;
+  StockPrice[] getPrices(String[] symbols);
 
-  
-  
   List<StockPrice> getAllStocks();
-  boolean saveOrUpdate(StockPrice stock)throws StockValidationExcepion;
+
+  boolean saveOrUpdate(StockPrice stock) throws StockValidationExcepion;
+
   void delete(StockPrice stock);
+
   StockPrice get(String symbol);
-  
+
 }
