@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project name="StockWatcher" default="build" basedir=".">
 	<!-- Configure path to GWT SDK -->
-	<property name="gwt.sdk" location="${gwt.sdk}" />
+	<property name="gwt.sdk" location="war/WEB-INF/lib/" />
 	<condition property="XstartOnFirstThread" value="-XstartOnFirstThread">
 		<os family="mac" />
 	</condition>

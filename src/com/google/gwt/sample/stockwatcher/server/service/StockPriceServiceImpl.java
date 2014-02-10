@@ -1,6 +1,15 @@
 package com.google.gwt.sample.stockwatcher.server.service;
 
-import static org.junit.Assert.assertEquals;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ValidatorFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gwt.sample.stockwatcher.client.DelistedException;
 import com.google.gwt.sample.stockwatcher.client.StockPrice;
@@ -8,23 +17,6 @@ import com.google.gwt.sample.stockwatcher.client.StockPriceService;
 import com.google.gwt.sample.stockwatcher.client.StockValidationExcepion;
 import com.google.gwt.sample.stockwatcher.server.dao.StockPriceDAO;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
-import javax.annotation.PostConstruct;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-
-import org.junit.BeforeClass;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @SuppressWarnings("serial")
 @Service("greetingService")
@@ -71,24 +63,20 @@ public class StockPriceServiceImpl extends RemoteServiceServlet implements Stock
 
   }
 
-  @Override
   public void delete(StockPrice stock) {
     stockDao.delete(stock);
 
   }
 
-  @Override
   public StockPrice get(String symbol) {
     return stockDao.get(symbol);
   }
 
-  @Override
   public List<StockPrice> getAllStocks() {
     // TODO Auto-generated method stub
     return stockDao.getAllStocks();
   }
 
-  @Override
   public boolean saveOrUpdate(StockPrice stock) throws StockValidationExcepion {
     Set<ConstraintViolation<StockPrice>> constraintViolations = validator.getValidator().validate(stock);
 

@@ -16,14 +16,12 @@ public class StockPriceDAOImpl implements StockPriceDAO {
   @Autowired
   private HibernateTemplate hibernateTemplate;
 
-  @Override
   public void delete(StockPrice stock) {
 
     hibernateTemplate.delete(stock);
 
   }
 
-  @Override
   public StockPrice get(String symbol) {
     StockPrice stock = null;
 
@@ -33,7 +31,6 @@ public class StockPriceDAOImpl implements StockPriceDAO {
   }
 
   @SuppressWarnings("unchecked")
-  @Override
   public List<StockPrice> getAllStocks() {
     List<StockPrice> stocks = null;
 
@@ -42,7 +39,6 @@ public class StockPriceDAOImpl implements StockPriceDAO {
     return stocks;
   }
 
-  @Override
   public boolean saveOrUpdate(StockPrice stock) {
     boolean successInsert = false;
     if (this.get(stock.getSymbol()) != null) {
